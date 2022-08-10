@@ -34,7 +34,7 @@ let players =
    ]
 
 router.post('/players', function (req, res) {
-    let ele = req.body.players
+    let ele = req.body
     players.push(ele)
     res.send(  { data: players , status: true }  )
 })
