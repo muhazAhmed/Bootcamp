@@ -8,7 +8,10 @@ const createBook= async function (req, res) {
 }
 
 const getBooksData= async function (req, res) {
-    let allBooks= await BookModel.find(  { authorName : "SK" , isPublished: true }  )
+    // let allBooks= await BookModel.find(  { bookName : "i" }  )
+    let allBooks= await BookModel.find(  { year : 1999 }  )
+    // let allBooks= await BookModel.find( {"price.indianPrice":{$in: [350, 550]} })
+    // let allBooks= await BookModel.find( { $or: [ { totalPages: 500 }, { stockAvailable: true } ] } )
     res.send({msg: allBooks})
 }
 
