@@ -1,48 +1,22 @@
-const express = require("express")
+const express = require('express');
+const bodyParser = require('body-parser');
+const route = require('./routes/route.js');
+const { default: mongoose } = require('mongoose');
 const app = express();
 
-// app.use(express.json())
-let persons = [
-    {
-        "name" : "PK",
-        "age" : 10,
-        "votingStatus" : "false" 
-    },
-    {
-        "name" : "SK",
-        "age" : 20,
-        "votingStatus" : "false"
-    },
-    {
-        "name" : "AA",
-        "age" : 70,
-        "votingStatus" : "false"
-    },
-    {
-        "name" : "SC",
-        "age" : 5,
-        "votingStatus" : "false"
-    },
-    {
-        "name" : "HO",
-        "age" : 40,
-        "votingStatus" : "false"
-    }
-]
-app.post('/persons', function(req,res){
-    let container = []
-    let eligible = req.query.inputAge
-    for(i = 0; i < persons.length;i++){
-        let newAge = persons[i].age
-        if(newAge > eligible
-            ){
-            persons[i].votingStatus = true;
-        }
-        // console.log(newAge);
-    }  
-    container = persons.filter((person) => person.age > eligible) 
-    console.log(eligible);
-    res.send(container)
-})
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(3000)
+
+mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh87698-DB?retryWrites=true&w=majority", {
+    useNewUrlParser: true
+})
+.then( () => console.log("MongoDb is connected"))
+.catch ( err => console.log(err) )
+
+app.use('/', route);
+
+
+app.listen(process.env.PORT || 3000, function () {
+    console.log('Express app running on port ' + (process.env.PORT || 3000))
+});
