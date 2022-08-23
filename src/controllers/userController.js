@@ -6,4 +6,6 @@ const createUser= async function (req, res) {
     res.send({msg: savedData})
 }
 
+
+
 module.exports.createUser= createUser

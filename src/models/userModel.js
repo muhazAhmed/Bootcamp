@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 const userSchema = new mongoose.Schema( {
-    author_id : {
-        type : Number,
-        required : true
-    },
-    author_name : String,
+    authorName : String,
     age : Number,
-    address : String
+    address : String,
+    rating : Number
+
 }, { timestamps: true });
 
 
-module.exports = mongoose.model('Author', userSchema)
+module.exports = mongoose.model('author', userSchema)
