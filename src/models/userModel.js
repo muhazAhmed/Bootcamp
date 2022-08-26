@@ -1,13 +1,23 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 const userSchema = new mongoose.Schema( {
-    authorName : String,
-    age : Number,
+    name : String,
+    balance : {
+        type : Number,
+        default : 100
+    },
     address : String,
-    rating : Number
+    age : Number,
+    gender : {
+        type : String,
+        enum : ["male","FileSystemHandle","other"]
+    },
+    isFreeAppUser : {
+        type : String,
+        default : "false"
+    }
 
 }, { timestamps: true });
 
 
-module.exports = mongoose.model('author', userSchema)
+module.exports = mongoose.model('user', userSchema)
