@@ -15,10 +15,10 @@ router.get ('/getUserData', userController.getUserData)
 
 router.post ('/login', userController.loginUser)
 
-router.get("/users/:userId",auth.validation ,userController.getUserData)
+router.get("/users/:userId",auth.authentication,auth.autherization,auth.params,userController.getUserData)
 
-router.put("/users/:userId",auth.validation, userController.updateUser)
+router.put("/users/:userId",auth.authentication,auth.autherization,auth.params,userController.updateUser)
 
-router.delete('/users/:userId',auth.validation,userController.deleteUser)
+router.delete('/users/:userId',auth.authentication,auth.autherization,auth.params,userController.deleteUser)
 
 module.exports = router;
