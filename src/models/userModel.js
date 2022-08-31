@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema( {
     firstName : String,
-    lastNAme : String,
+    lastName : String,
     mobile : {
         type : String,
         require : true
@@ -22,4 +22,4 @@ const userSchema = new mongoose.Schema( {
 }, { timestamps: true });
 
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model('userData', userSchema)

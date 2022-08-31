@@ -11,8 +11,6 @@ router.get ('/test-me', function(req,res){
 
 router.post ('/createUser', userController.createUser)
 
-router.get ('/getUserData', userController.getUserData)
-
 router.post ('/login', userController.loginUser)
 
 router.get("/users/:userId",auth.authentication,auth.autherization,auth.params,userController.getUserData)
