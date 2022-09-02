@@ -1,22 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const userController = require ('../controllers/userController')
-const auth = require ('../middleware/auth')
-const userSchema = require ('../models/userModel')
+const memeController = require ('../controllers/memeController')
+const cowinController = require ('../controllers/cowinController')
+const weatherController = require ('../controllers/weatherController')
+// const auth = require ('../middleware/auth')
+// const userSchema = require ('../models/userModel')
 
 
 router.get ('/test-me', function(req,res){
     res.send('My first ever API')
 })
 
-router.post ('/createUser', userController.createUser)
+router.get("/cowin/states", cowinController.getStates)
+router.get("/cowin/districtsInState/:stateId", cowinController.getDistrict)
+router.get("/cowin/getByPin", cowinController.getByPin)
+router.post("/cowin/getOtp", cowinController.getOtp)
 
-router.post ('/login', userController.loginUser)
+router.get("/cowin/getByDistrict", cowinController.getByDistrict) 
 
-router.get("/users/:userId",auth.authentication,auth.autherization,auth.params,userController.getUserData)
 
-router.put("/users/:userId",auth.authentication,auth.autherization,auth.params,userController.updateUser)
+// >>>>>>>>>>>>>>>>>>>>>> weather apis <<<<<<<<<<<<<<<<<<<<<<<<<<
+router.get("/getweather", weatherController.getWeather)
+router.get("/gettemp", weatherController.getTemp)
+router.get("/getcitytemp", weatherController.getcityTemp)
 
-router.delete('/users/:userId',auth.authentication,auth.autherization,auth.params,userController.deleteUser)
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> memes apis <<<<<<<<<<<<<<<<<<<<<<<
+router.get("/getmemes", memeController.getmemes)
+router.post("/postmemes", memeController.postmeme)
+
+module.exports = router;
 
 module.exports = router;
